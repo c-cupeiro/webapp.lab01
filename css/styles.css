@@ -65,3 +65,100 @@ body {
     padding: 10px 8px;
     text-align: center;
 }
+
+.lista-tarea {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lista-tarea li {
+    background-color: lightgray;
+    -webkit-border-radius: 6px;
+    border: solid 2px lightgray;
+    margin: 10px 0px;
+    padding: 10px 8px;
+}
+
+.lista-tarea li:hover {
+    border: solid 2px darkgray;
+}
+
+.lista-tarea li.pendiente:hover {
+    border: solid 2px darkred;
+}
+
+.lista-tarea li.completada:hover {
+    border: solid 2px darkgreen;
+}
+
+a.boton {
+    display: block;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #b3b3b3), color-stop(0.4, #666666), color-stop(1.0, #333333));
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+    margin: 0px 10px 10px 10px;
+    text-align: center;
+    -webkit-box-shadow: 0 2px 2px #333333;
+    -webkit-border-radius: 6px;
+    border: solid 1px gray;
+}
+
+a.boton:hover {
+    border: solid 1px white;
+}
+
+input[type="text"] {
+    width: 90%;
+    display: block;
+    font-size: 1.05em;
+    margin: 10px auto;
+    padding: 10 px;
+}
+
+ul.filtros {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.filtros li {
+    margin: 10px 0;
+}
+
+input [type="datetime"] {
+    width: 100%;
+    display: block;
+    font-size: 1.05em;
+}
+
+.lista-tarea li.pendiente {
+    background-color: tomato;
+    border: solid 2px tomato;
+}
+
+.lista-tarea li.completada {
+    background-color: lightgreen;
+    border: solid 2px lightgreen;
+}
+
+p.pendiente {
+    padding: 10px;
+    background-color: tomato;
+    border: solid 2px tomato;
+}
+
+p.completada {
+    padding: 10px;
+    background-color: lightgreen;
+    border: solid 2px lightgreen;
+}
+
+div.page {
+    display: none;
+}
+
+div#pgPrincipal {
+    display: block;
+}
