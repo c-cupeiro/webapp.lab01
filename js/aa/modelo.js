@@ -1,4 +1,5 @@
 var nextId = 1;
+var tareasDB = [];
 
 function Tarea(titulo) {
     this.id = nextId++;
@@ -7,9 +8,7 @@ function Tarea(titulo) {
     this.ts = new Date().getTime();
 }
 
-var tareasDB = [];
-
-/* Crea una nueva tarea en la bd */
+/* crea una nueva tarea en la bd */
 function nuevaTarea(title) {
     console.log('nuevaTarea(' + title + ')');
     var tarea = new Tarea(title);
@@ -17,24 +16,23 @@ function nuevaTarea(title) {
     return tarea;
 }
 
-/* Busca una tarea en la bd */
+/* busca una tarea en la bd */
 function buscarTarea(id) {
     console.log('buscarTarea(' + id + ')');
-    for (var i = 0; i < tareasDB.length; i++)
-        if (tareasDB[i].id == id)
-            return tareasDB[i];
+    for (var i = 0; i < tareasDB.length; i++) {
+        if (tareasDB[i].id == id) return tareasDB[i];
+    }
     return null;
 }
 
-/* Completa una tarea */
+/* completa una tarea */
 function completarTarea(id) {
     console.log('completarTarea(' + id + ')');
     var tarea = buscarTarea(id);
-    if (tarea)
-        tarea.estado = 'completada';
+    if (tarea) tarea.estado = 'completada';
 }
 
-/* Elimina una tarea de la bd */
+/* elimina una tarea de la bd */
 function eliminarTarea(id) {
     console.log('eliminarTarea(' + id + ')');
     for (var i = 0; i < tareasDB.length; i++) {
