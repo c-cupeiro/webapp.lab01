@@ -7,7 +7,13 @@ function Tarea(titulo) {
     this.ts = new Date().getTime();
 }
 
-var tareasDB = [];
+var tareasDB;
+$(function() {
+    tareasDB = [];
+    var tarea = new Tarea("title");
+    tareasDB.unshift(tarea);
+    localStorage.setItem(tarea.id, JSON.stringify(tarea));
+});
 
 /* Crea una nueva tarea en la bd */
 function nuevaTarea(title) {
