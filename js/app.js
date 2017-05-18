@@ -56,9 +56,12 @@ function refrescarPrincipal() {
     $('#pgPrincipal .lista-tarea').empty();
     var numTareas = 0;
     var i = 0;
-    while (numTareas < 5 && i < tareasDB.length) {
-        if (tareasDB[i].estado == 'pendiente') {
-            $('#pgPrincipal .lista-tarea').append('<li onclick="navSaltar(\'pgEditarTarea\',' + tareasDB[i].id + ')">Tarea: ' + tareasDB[i].titulo + '</li>');
+    var listaTareas = getTareasDB();
+    while (numTareas < 5 && i < listaTareas.length) {
+        var tarea = buscarTarea(listaTareas[i]);
+        if (tarea.estado == 'pendiente') {
+            $('#pgPrincipal .lista-tarea').append('<li onclick="navSaltar(\'pgEditarTarea\',' +
+                tarea.id + ')">Tarea: ' + tarea.titulo + '</li>');
             numTareas++;
         }
         i++;
@@ -82,7 +85,8 @@ function refrescarEditarTarea(id) {
     // Detalles tarea
     var html = '<legend>Tarea: ' + tarea.titulo + '</legend>';
     var date = new Date(tarea.ts);
-    html += '<p class="' + tarea.estado + '">' + tarea.estado + '</p><p class="' + tarea.estado + '">' + [date.getDate(), date.getMonth() + 1, date.getFullYear()].join("/") + '</p>';
+    html += '<p class="' + tarea.estado + '">' +
+        tarea.estado + '</p><p class="' + tarea.estado + '">' + [date.getDate(), date.getMonth() + 1, date.getFullYear()].join("/") + '</p>';
     $('#pgEditarTarea .content fieldset').html(html);
     // Botón completar
     html = tarea.estado == 'pendiente' ? '<a id="btCompletar"' +
@@ -108,8 +112,9 @@ function refrescarTodasTareas() {
         console.log('Fecha no valida');
     }
     console.log('pendientes:' + pendientes + ',completadas:' + completadas + ',fecha:' + fecha);
-    for (var i = 0; i < tareasDB.length; i++) {
-        var tarea = tareasDB[i];
+    var listaTareas = getTareasDB();
+    for (var i = 0; i < listaTareas.length; i++) {
+        var tarea = buscarTarea(listaTareas[i]);
         if (tarea.estado == 'pendiente' && !pendientes) continue;
         if (tarea.estado == 'completada' && !completadas) continue;
         if (fecha && tarea.ts < fecha.getTime()) continue;
