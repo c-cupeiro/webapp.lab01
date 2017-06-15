@@ -1,0 +1,15 @@
+{
+    // Utilice IntelliSense para aprender sobre los atributos de depuración de Node.js. 
+    // Mantenga el puntero para ver las descripciones de los existentes atributos 
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [{
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "file:///D:/Master%20App%20Moviles/UPV_MASTER/06.-WEBAPPS/Tareas/Lab02/lab02/index.html",
+            "webRoot": "${workspaceRoot}"
+        }
+
+    ]
+}

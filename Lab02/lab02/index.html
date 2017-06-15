@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rutas_CCupeiro</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
+    <script src="js/externo/jquery-1.12.4.js"></script>
+    <script src="js/externo/jquery.mobile-1.4.5.js"></script>
+</head>
+
+<body>
+
+</body>
+<!-- PAGINA HOME-->
+<div id="pgHome" data-role="page">
+    <div data-role="header">
+        <h1>Mis rutas</h1>
+    </div>
+    <div class="ui-content">
+        <input id="txtTitulo" type="text" placeholder="T&iacute;tulo">
+        <input id="btnGuardar" type="button" value="Empezar Ruta">
+        <div id="pnInfo">
+            <p id="lblInfo"> Grabando ruta XXX</p>
+            <p id="lblReloj"> 00:00:00 </p>
+        </div>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pgHome" class="ui-btn-active ui-state-persist" data-icon="home">Principal</a></li>
+                <li><a href="#pgMisRutas" data-icon="search">Mis rutas</a></li>
+                <li><a href="#pgMapa" data-icon="navigation">Mapa</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- PAGINA MIS RUTAS-->
+<div id="pgMisRutas" data-role="page">
+    <div data-role="header">
+        <h1>Mis rutas</h1>
+    </div>
+    <div class="ui-content">
+        <div id="pnRutas">
+            <ul data-role="listview" data-filter="true">
+                <li><a id="1" href="#">Ruta 1</a></li>
+                <li><a id="2" href="#">Ruta 2</a></li>
+                <li><a id="3" href="#">Ruta 3</a></li>
+                <li><a id="4" href="#">Ruta 4</a></li>
+            </ul>
+        </div>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pgHome" data-icon="home">Principal</a></li>
+                <li><a href="#pgMisRutas" class="ui-btn-active ui-state-persist" data-icon="search">Mis rutas</a></li>
+                <li><a href="#pgMapa" data-icon="navigation">Mapa</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- PAGINA EDITAR RUTA-->
+<div id="pgEditarRuta" data-role="page">
+    <div data-role="header" data-add-back-btn="true" data-back-btn-text="Atr&aacute;s">
+        <h1>Editar Ruta</h1>
+    </div>
+    <div class="ui-content">
+        <input id="txtEditarTitulo" type="text">
+        <input id="txtEditarFecha" type="text" disabled>
+        <input id="txtEditarColor" type="color">
+        <label for="txtEditarVisualizar">Visualizar:</label>
+        <select id="txtEditarVisualizar" data-role="flipswitch">
+            <option value="off">Off</option>
+            <option value="on">On</option>
+        </select>
+        <input id="btBorrar" type="button" value="Borrar">
+    </div>
+
+</div>
+<!-- PAGINA MAPA-->
+<div id="pgMapa" data-role="page">
+    <div data-role="header">
+        <h1>Mis rutas</h1>
+    </div>
+    <div class="ui-content">
+        <div id="pnMapa">
+            <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+            <script>
+                $(document).one('pageshow', '#pgMapa', function(e, data) {
+                    // obtener altura del contenedor
+                    var header = $("#pgMapa").find("div[data-role='header']:visible");
+                    var footer = $("#pgMapa").find("div[data-role='footer']:visible");
+                    var content = $("#pgMapa").find("div.ui-content:visible");
+                    var viewport_height = $(window).height();
+                    var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+                    if ((content.outerHeight() - header.outerHeight() - footer.outerHeight()) <=
+                        viewport_height) {
+                        content_height -= (content.outerHeight() - content.height());
+                    }
+                    $('#pnMapa').height(content_height);
+                    var myOptions = {
+                        zoom: 18,
+                        center: new google.maps.LatLng(38.695015, -0.476049),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    var map = new google.maps.Map($('#pnMapa')[0], myOptions);
+                });
+            </script>
+        </div>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#pgHome" data-icon="home">Principal</a></li>
+                <li><a href="#pgMisRutas" data-icon="search">Mis rutas</a></li>
+                <li><a href="#pgMapa" class="ui-btn-active ui-state-persist" data-icon="navigation">Mapa</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</html>
