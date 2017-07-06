@@ -1,0 +1,20 @@
+.background {
+    background: center no-repeat url(http://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Big_Buck_Bunny_8_seconds_bird_clip.ogv/1280px--Big_Buck_Bunny_8_seconds_bird_clip.ogv.jpg);
+}
+
+.logo {
+    background-image: url("http://bbb3d.renderfarming.net/img/logo.png");
+}
+
+.progressBar {
+    background-color: rgb(238, 255, 65);
+}
+
+.watermark {
+    background-image: url("http://bbb3d.renderfarming.net/img/logo.png");
+    background-size: 100px 50px;
+}
+
+.splash {
+    background-image: url("http://commons.wikimedia.org/wiki/File%3ABig_buck_bunny_poster_big.jpg");
+}

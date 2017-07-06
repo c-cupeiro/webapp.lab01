@@ -1,0 +1,69 @@
+<html>
+<script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js">
+</script>
+<script type="text/javascript">
+    var namespace = "urn:x-cast:com.example.googlecastpersonalizada";
+
+    function texto(str) {
+        var newSpan = document.createElement("span");
+        var newContent = document.createTextNode(str);
+        newSpan.appendChild(newContent);
+        var root = document.getElementById("root");
+        root.appendChild(newSpan);
+        root.appendChild(document.createElement("br"));
+    }
+
+    function fondo(str) {
+        document.body.style.backgroundColor = str;
+        texto('Fondo cambiado:' + str);
+        broadcast(str);
+    }
+
+    function onChannelOpened(event) {
+        texto("Usuario conectado. Total: " + window.castReceiverManager.getSenders().length);
+    }
+
+    function onChannelClosed(event) {
+        texto("Usuario desconectado. Total: " + window.castReceiverManager.getSenders().length);
+        if (window.castReceiverManager.getSenders().length == 0) {
+            window.close();
+        }
+    }
+
+    function onError() {
+        texto("Error...");
+    }
+
+    function onMessage(event) {
+        var message = event.data;
+        var senderId = event.senderId;
+        if (message.substring(0, 3) == "#T#") {
+            texto("Mensaje: " + message.substring(3, message.length));
+        };
+        if (message.substring(0, 3) == "#F#") {
+            fondo(message.substring(3, message.lenght));
+        };
+    }
+
+    function onLoad() {
+        texto("Aplicación cargada");
+        window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+        window.castReceiverManager.onSenderConnected = onChannelOpened;
+        window.castReceiverManager.onSenderDisconnected = onChannelClosed;
+        window.customMessageBus = window.castReceiverManager.getCastMessageBus(namespace);
+        window.customMessageBus.onMessage = onMessage;
+        window.castReceiverManager.start();
+        texto("Aplicación iniciada");
+    }
+
+    function broadcast(message) {
+        window.customMessageBus.broadcast(message);
+    }
+    window.addEventListener("load", onLoad);
+</script>
+
+<body>
+    <div id="root" style="position:absolute; top:50px; left:50px; height:100%; width:100%; color:#FFFFFF; padding:10px;" /> GOOGLE CAST - PERSONALIZADA<br> </div>
+</body>
+
+</html>
