@@ -1,9 +1,8 @@
 var ListaRutas = Backbone.View.extend({
     initialize: function() {
         var self = this;
-        this.collection.on('add', function() { self.render(); });
         this.collection.on('remove', function() { self.render(); });
-        this.collection.on('change:titulo', function() { self.render(); });
+        this.collection.on('sync', function() { self.render(); });
         this.render();
     },
     render: function() {

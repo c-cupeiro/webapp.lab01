@@ -4,6 +4,17 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json());
 app.use(express.static('static'));
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    if (req.method == 'OPTIONS') {
+        res.status(200).send();
+    } else {
+        next();
+    }
+});
+
 
 var rutas = [];
 var nextId = 0;
@@ -58,4 +69,5 @@ app.delete('/misrutas/rutas/:id', function(req, res) {
     res.status(404).send('Not found');
 });
 
-app.listen(8080);
+var port = process.env.PORT || 8080;
+app.listen(port);

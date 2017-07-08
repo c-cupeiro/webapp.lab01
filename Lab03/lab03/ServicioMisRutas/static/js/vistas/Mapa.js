@@ -31,18 +31,8 @@ var Mapa = Backbone.View.extend({
         });
 
         // controlar cambios en el modelo
-        this.collection.on('change:color', function() {
-            self.render();
-        });
-        this.collection.on('change:visible', function() {
-            self.render();
-        });
-        this.collection.on('add', function() {
-            self.render();
-        });
-        this.collection.on('remove', function() {
-            self.render();
-        });
+        this.collection.on('remove', function() { self.render(); });
+        this.collection.on('sync', function() { self.render(); });
     },
     render: function() {
         // limpiar todas las rutas pintadas
